@@ -1,28 +1,48 @@
 package newid.splearn.domain
 
-class Member {
-    val email: String
-    var nickname: String
-    var passworkdHash: String
+class Member private constructor(
+    val email: Email,
+    var nickname: String,
+    var passwordHash: String,
     var status: MemberStatus
-
-    constructor(email: String, nickname: String, passworkdHash: String) {
-        this.email = requireNotNull(email)
-        this.nickname = requireNotNull(nickname)
-        this.passworkdHash = requireNotNull(passworkdHash)
-        this.status = MemberStatus.PENDING
+) {
+    companion object {
+        @JvmStatic
+        fun create(createRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+            return Member(
+                email = requireNotNull(Email(createRequest.email)),
+                nickname = requireNotNull(createRequest.nickname),
+                passwordHash = requireNotNull(passwordEncoder.encode(createRequest.password)),
+                status = MemberStatus.PENDING
+            )
+        }
     }
 
     fun activate() {
-        check(this.status == MemberStatus.PENDING)
+        check(status == MemberStatus.PENDING)
 
-        this.status = MemberStatus.ACTIVE
+        status = MemberStatus.ACTIVE
     }
 
     fun deactivate() {
-        check(this.status == MemberStatus.ACTIVE)
+        check(status == MemberStatus.ACTIVE)
 
-        this.status = MemberStatus.DEACTIVATED
+        status = MemberStatus.DEACTIVATED
     }
 
+    fun verifyPassword(password: String, passwordEncoder: PasswordEncoder): Boolean {
+        return passwordEncoder.matches(password, passwordHash)
+    }
+
+    fun changeNickname(nickname: String) {
+        this.nickname = nickname
+    }
+
+    fun changePassword(password: String, passwordEncoder: PasswordEncoder) {
+        passwordHash = passwordEncoder.encode(password)
+    }
+
+    fun isActive(): Boolean {
+        return status == MemberStatus.ACTIVE
+    }
 }
