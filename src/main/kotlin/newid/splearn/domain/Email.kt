@@ -1,7 +1,9 @@
 package newid.splearn.domain
 
+import jakarta.persistence.Embeddable
 import java.util.regex.Pattern
 
+@Embeddable
 data class Email(val address: String) {
     companion object {
         private val EMAIL_PATTERN: Pattern =

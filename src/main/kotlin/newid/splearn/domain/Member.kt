@@ -1,14 +1,26 @@
 package newid.splearn.domain
 
+import jakarta.persistence.Embedded
+import jakarta.persistence.Entity
+import jakarta.persistence.Enumerated
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
+import lombok.AccessLevel
+import lombok.NoArgsConstructor
+
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 class Member private constructor(
-    val email: Email,
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
+    @Embedded val email: Email,
     var nickname: String,
     var passwordHash: String,
-    var status: MemberStatus
+    @Enumerated var status: MemberStatus
 ) {
     companion object {
         @JvmStatic
-        fun create(createRequest: MemberCreateRequest, passwordEncoder: PasswordEncoder): Member {
+        fun register(createRequest: MemberRegisterRequest, passwordEncoder: PasswordEncoder): Member {
             return Member(
                 email = requireNotNull(Email(createRequest.email)),
                 nickname = requireNotNull(createRequest.nickname),
