@@ -3,21 +3,17 @@ package newid.splearn.domain
 import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.Enumerated
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.GenerationType
-import jakarta.persistence.Id
 import lombok.AccessLevel
 import lombok.NoArgsConstructor
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 class Member private constructor(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) val id: Long? = null,
     @Embedded val email: Email,
     var nickname: String,
     var passwordHash: String,
     @Enumerated var status: MemberStatus
-) {
+): AbstractEntity() {
     companion object {
         @JvmStatic
         fun register(createRequest: MemberRegisterRequest, passwordEncoder: PasswordEncoder): Member {
