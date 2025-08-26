@@ -1,14 +1,14 @@
-package newid.splearn.application.provided
+package newid.splearn.application.member.provided
 
 import jakarta.persistence.EntityManager
 import jakarta.transaction.Transactional
 import jakarta.validation.ConstraintViolationException
 import newid.splearn.SplearnTestConfiguration
-import newid.splearn.domain.DuplicateEmailException
-import newid.splearn.domain.Member
-import newid.splearn.domain.MemberFixture
-import newid.splearn.domain.MemberRegisterRequest
-import newid.splearn.domain.MemberStatus
+import newid.splearn.domain.member.DuplicateEmailException
+import newid.splearn.domain.member.Member
+import newid.splearn.domain.member.MemberFixture
+import newid.splearn.domain.member.MemberRegisterRequest
+import newid.splearn.domain.member.MemberStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.Test

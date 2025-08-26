@@ -1,4 +1,4 @@
-package newid.splearn.domain
+package newid.splearn.domain.member
 
 class MemberFixture {
     companion object {

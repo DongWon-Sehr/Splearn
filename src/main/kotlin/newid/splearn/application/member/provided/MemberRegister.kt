@@ -1,8 +1,8 @@
-package newid.splearn.application.provided
+package newid.splearn.application.member.provided
 
 import jakarta.validation.Valid
-import newid.splearn.domain.Member
-import newid.splearn.domain.MemberRegisterRequest
+import newid.splearn.domain.member.Member
+import newid.splearn.domain.member.MemberRegisterRequest
 
 interface MemberRegister {
     fun register(@Valid memberRegisterRequest: MemberRegisterRequest): Member

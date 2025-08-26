@@ -1,10 +1,10 @@
-package newid.splearn.application.provided
+package newid.splearn.application.member.provided
 
 import jakarta.persistence.EntityManager
 import jakarta.transaction.Transactional
 import newid.splearn.SplearnTestConfiguration
-import newid.splearn.domain.Member
-import newid.splearn.domain.MemberFixture
+import newid.splearn.domain.member.Member
+import newid.splearn.domain.member.MemberFixture
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.context.annotation.Import

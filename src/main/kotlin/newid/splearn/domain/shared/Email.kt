@@ -1,4 +1,4 @@
-package newid.splearn.domain
+package newid.splearn.domain.shared
 
 import jakarta.persistence.Embeddable
 import java.util.regex.Pattern

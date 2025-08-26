@@ -1,16 +1,16 @@
-package newid.splearn.application
+package newid.splearn.application.member
 
 import jakarta.transaction.Transactional
 import jakarta.validation.Valid
-import newid.splearn.application.provided.MemberFinder
-import newid.splearn.application.provided.MemberRegister
-import newid.splearn.application.required.EmailSender
-import newid.splearn.application.required.MemberRepository
-import newid.splearn.domain.DuplicateEmailException
-import newid.splearn.domain.Email
-import newid.splearn.domain.Member
-import newid.splearn.domain.MemberRegisterRequest
-import newid.splearn.domain.PasswordEncoder
+import newid.splearn.application.member.provided.MemberFinder
+import newid.splearn.application.member.provided.MemberRegister
+import newid.splearn.application.member.required.EmailSender
+import newid.splearn.application.member.required.MemberRepository
+import newid.splearn.domain.member.DuplicateEmailException
+import newid.splearn.domain.shared.Email
+import newid.splearn.domain.member.Member
+import newid.splearn.domain.member.MemberRegisterRequest
+import newid.splearn.domain.member.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.validation.annotation.Validated
 

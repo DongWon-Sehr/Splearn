@@ -1,9 +1,9 @@
-package newid.splearn.application
+package newid.splearn.application.member
 
 import jakarta.transaction.Transactional
-import newid.splearn.application.provided.MemberFinder
-import newid.splearn.application.required.MemberRepository
-import newid.splearn.domain.Member
+import newid.splearn.application.member.provided.MemberFinder
+import newid.splearn.application.member.required.MemberRepository
+import newid.splearn.domain.member.Member
 import org.springframework.stereotype.Service
 import org.springframework.validation.annotation.Validated
 

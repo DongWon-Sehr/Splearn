@@ -1,6 +1,6 @@
 package newid.splearn.adaptor.security
 
-import newid.splearn.domain.PasswordEncoder
+import newid.splearn.domain.member.PasswordEncoder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Component
 

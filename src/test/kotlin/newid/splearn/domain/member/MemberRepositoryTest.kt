@@ -1,7 +1,7 @@
-package newid.splearn.domain
+package newid.splearn.domain.member
 
 import jakarta.persistence.EntityManager
-import newid.splearn.application.required.MemberRepository
+import newid.splearn.application.member.required.MemberRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.assertj.core.api.Assertions.assertThat
@@ -38,5 +38,24 @@ class MemberRepositoryTest {
         val member2: Member = Member.register(MemberFixture.createMemberRequest(), MemberFixture.createPasswordEncoder())
         assertThatThrownBy { memberRepository.save(member2) }
             .isInstanceOf(DataIntegrityViolationException::class.java)
+    }
+
+    @Test
+    fun updateMemberInfo() {
+        val member: Member = Member.register(MemberFixture.createMemberRequest(), MemberFixture.createPasswordEncoder())
+
+        val memberInfoUpdateRequest = MemberInfoUpdateRequest("dongwon", "dongwon", "my name is dongwon")
+        member.updateMemberInfo(memberInfoUpdateRequest)
+
+        memberRepository.save(member)
+
+        entityManager.flush()
+        entityManager.clear()
+
+        val found: Member = memberRepository.findById(member.id).orElseThrow()
+
+        assertThat(found.nickname).isEqualTo(memberInfoUpdateRequest.nickname)
+        assertThat(found.detail.profile?.address).isEqualTo(memberInfoUpdateRequest.profileAddress)
+        assertThat(found.detail.introduction).isEqualTo(memberInfoUpdateRequest.introduction)
     }
 }

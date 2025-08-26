@@ -1,7 +1,7 @@
-package newid.splearn.application.required
+package newid.splearn.application.member.required
 
-import newid.splearn.domain.Email
-import newid.splearn.domain.Member
+import newid.splearn.domain.shared.Email
+import newid.splearn.domain.member.Member
 import org.springframework.data.repository.Repository
 import java.util.Optional
 

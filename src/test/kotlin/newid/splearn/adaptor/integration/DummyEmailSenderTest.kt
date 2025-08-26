@@ -1,6 +1,6 @@
 package newid.splearn.adaptor.integration
 
-import newid.splearn.domain.Email
+import newid.splearn.domain.shared.Email
 import kotlin.test.Test
 import org.assertj.core.api.Assertions.assertThat
 import org.junitpioneer.jupiter.StdIo
